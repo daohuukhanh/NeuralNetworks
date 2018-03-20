@@ -1,0 +1,10 @@
+S:\Term4\COMP 4932 - Advanced Topics in Digital Processing\Assignments\A3 neural networks\New folder\NeuralNetworks\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+S:\Term4\COMP 4932 - Advanced Topics in Digital Processing\Assignments\A3 neural networks\New folder\NeuralNetworks\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+S:\Term4\COMP 4932 - Advanced Topics in Digital Processing\Assignments\A3 neural networks\New folder\NeuralNetworks\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+S:\Term4\COMP 4932 - Advanced Topics in Digital Processing\Assignments\A3 neural networks\New folder\NeuralNetworks\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\HandwrittenDigitsApp.csprojResolveAssemblyReference.cache
+S:\Term4\COMP 4932 - Advanced Topics in Digital Processing\Assignments\A3 neural networks\New folder\NeuralNetworks\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+S:\Term4\COMP 4932 - Advanced Topics in Digital Processing\Assignments\A3 neural networks\New folder\NeuralNetworks\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+S:\Term4\COMP 4932 - Advanced Topics in Digital Processing\Assignments\A3 neural networks\New folder\NeuralNetworks\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\HandwrittenDigitsApp.csproj.GenerateResource.Cache
+S:\Term4\COMP 4932 - Advanced Topics in Digital Processing\Assignments\A3 neural networks\New folder\NeuralNetworks\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\HandwrittenDigitsApp.csproj.CoreCompileInputs.cache
+S:\Term4\COMP 4932 - Advanced Topics in Digital Processing\Assignments\A3 neural networks\New folder\NeuralNetworks\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+S:\Term4\COMP 4932 - Advanced Topics in Digital Processing\Assignments\A3 neural networks\New folder\NeuralNetworks\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
