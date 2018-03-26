@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dot.cs" />
+    <Compile Include="Mnist_loader.cs" />
     <Compile Include="Network.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
