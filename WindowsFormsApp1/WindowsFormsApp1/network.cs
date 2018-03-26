@@ -46,6 +46,23 @@ namespace WindowsFormsApp1
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+        public cost_derivative()
+        {
+
+        }
+
         public double sigmoid(double z)
         {
             float x = z;

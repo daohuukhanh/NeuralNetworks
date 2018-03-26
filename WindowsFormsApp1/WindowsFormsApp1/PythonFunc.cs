@@ -111,6 +111,22 @@ namespace WindowsFormsApp1
             int[,] mat = matrix0;
             int x = z0;
 
+            // needs to be implemented...
+        }
+
+        public int[,] Transpose(int[,] mat)
+        {
+            int[,] matrix = mat;
+            int[,] newMat = new int[matrix.GetLength(1), matrix.GetLength(0)];
+            for (int i = 0; i < mat.GetLength(0); i++)
+            {
+                for (int j = 0; j < mat.GetLength(1); j++)
+                {
+                    newMat[j, i] = matrix[i, j];
+                }
+            }
+
+            return newMat;
         }
     }
 }
