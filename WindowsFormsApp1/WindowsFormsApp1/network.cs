@@ -9,6 +9,7 @@ using System.Collections.Generic;
 
 namespace WindowsFormsApp1
 {
+
     /*  
      *  A module to implement the stochastic gradient descent learning
      *  algorithm for a feedforward neural network.Gradients are calculated
@@ -23,6 +24,7 @@ namespace WindowsFormsApp1
         private int biases; // randomly initialized
         private int weights; // randomly initialized
 
+        PythonFunc pyc;
         public Network(int num, List<int> size)
         {
             this.num_layers = num;
@@ -37,6 +39,24 @@ namespace WindowsFormsApp1
 
 
             //return num;
+        }
+
+
+
+
+
+
+        public double sigmoid(double z)
+        {
+            float x = z;
+            return 1.0 / (1.0 + pyc.Exponential(-x));
+        }
+
+
+        public double sigmoid_prime(float z)
+        {
+            double x = z;
+            return sigmoid(x) * (1 - sigmoid(x));
         }
     }
 }

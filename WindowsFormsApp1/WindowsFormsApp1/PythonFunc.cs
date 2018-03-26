@@ -10,7 +10,7 @@ namespace WindowsFormsApp1
     {
         public PythonFunc()
         {
-            
+
 
 
 
@@ -91,10 +91,26 @@ namespace WindowsFormsApp1
 
             for (int i = 0; i < x; i++)
             {
-                    zeroarray[i] = 0;
+                zeroarray[i] = 0;
             }
 
             return zeroarray;
+        }
+
+
+        public double Exponential(double z0)
+        {
+            double x = z0;
+            double e = 2.718281;
+
+            return Math.Pow(e, x);
+        }
+
+        public int Argmax(int[,] matrix0, int z0)
+        {
+            int[,] mat = matrix0;
+            int x = z0;
+
         }
     }
 }
