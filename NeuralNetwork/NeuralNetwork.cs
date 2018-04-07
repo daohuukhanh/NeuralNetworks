@@ -5,13 +5,15 @@ namespace NeuralNetwork
 {
     public class NeuralNetwork
     {
-        private readonly double _learningRate;
+        private readonly double _learningRate;        
         private Matrix _weightHiddenOutput;
         private Matrix _weightInputHidden;
+        public int _numEpoch;
 
-        public NeuralNetwork(int numberOfInputNodes, int numberOfHiddenNodes, int numberOfOutputNodes, double learningRate)
+        public NeuralNetwork(int numberOfInputNodes, int numberOfHiddenNodes, int numberOfOutputNodes, int numberOfEpochs, double learningRate)
         {
             _learningRate = learningRate;
+            _numEpoch = numberOfEpochs;
 
             _weightInputHidden = Matrix.Create(numberOfHiddenNodes, numberOfInputNodes);
             _weightHiddenOutput = Matrix.Create(numberOfOutputNodes, numberOfHiddenNodes);

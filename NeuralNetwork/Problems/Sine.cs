@@ -8,14 +8,14 @@ namespace NeuralNetwork.Problems
     {
         public static void Run()
         {
-            var network = new NeuralNetwork(1, 15, 1, 0.01);
+            var network = new NeuralNetwork(1, 15, 1, 100, 0.01);
 
             var shuffledInputs = GenerateShuffeledInputs();
 
             var trainData = shuffledInputs.Take(shuffledInputs.Length / 2).ToArray();
             var testData = shuffledInputs.Skip(shuffledInputs.Length / 2).ToArray();
 
-            for (var epoch = 0; epoch < 100; epoch++)
+            for (var epoch = 0; epoch < network._numEpoch; epoch++)
             {
                 foreach (var data in trainData)
                 {

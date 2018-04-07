@@ -13,14 +13,13 @@ namespace NeuralNetwork.Problems
         {
             var shuffledInputs = GetInputs();
 
-            var network = new NeuralNetwork(4, 5, 3, 0.2);
+            var network = new NeuralNetwork(4, 5, 3, 500, 0.2);
 
             var trainDataSet = shuffledInputs.Take(100).ToArray();
-            const int epochs = 500;
-
+ 
             Console.WriteLine($"Training network with {trainDataSet.Length} samples using {epochs} epochs...");
 
-            for (var epoch = 0; epoch < epochs; epoch++)
+            for (var epoch = 0; epoch < network._numEpoch; epoch++)
             {
                 foreach (var input in trainDataSet)
                 {
