@@ -12,7 +12,7 @@ namespace NeuralNetwork.Problems
         {
             Console.WriteLine("Creating neural network...");
 
-            var network = new NeuralNetwork(784, 100, 10, 30, 0.3);
+            var network = new NeuralNetwork(784, 100, 10, 10, 0.3);
 
             var dataset = File.ReadAllLines(@"C:/Users/daohu/Desktop/NeuralNetworks/mnist_train.csv");
 
