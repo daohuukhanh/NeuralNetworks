@@ -8,7 +8,7 @@ namespace NeuralNetwork.Problems
     {
         public static void Run()
         {
-            var network = new NeuralNetwork(1, 15, 1, 0.01);
+            var network = new NeuralNetwork(1, 15, 1, 1, 0.01);
 
             var shuffledInputs = GenerateShuffeledInputs();
 
