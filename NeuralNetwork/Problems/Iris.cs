@@ -13,7 +13,7 @@ namespace NeuralNetwork.Problems
         {
             var shuffledInputs = GetInputs();
 
-            var network = new NeuralNetwork(4, 5, 3, 0.2);
+            var network = new NeuralNetwork(4, 5, 3, 1, 0.2);
 
             var trainDataSet = shuffledInputs.Take(100).ToArray();
             const int epochs = 500;

@@ -8,7 +8,7 @@ namespace NeuralNetwork.Problems
         {
             Console.WriteLine("Creating neural network...");
 
-            var network = new NeuralNetwork(2, 5, 1, 1.8);
+            var network = new NeuralNetwork(2, 5, 1, 1, 1.8);
 
             for (int epoch = 0; epoch < 2000; epoch++)
             {
