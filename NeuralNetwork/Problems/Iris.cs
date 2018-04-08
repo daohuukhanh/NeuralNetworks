@@ -17,7 +17,7 @@ namespace NeuralNetwork.Problems
 
             var trainDataSet = shuffledInputs.Take(100).ToArray();
  
-            Console.WriteLine($"Training network with {trainDataSet.Length} samples using {epochs} epochs...");
+            Console.WriteLine($"Training network with {trainDataSet.Length} samples using {network._numEpoch} epochs...");
 
             for (var epoch = 0; epoch < network._numEpoch; epoch++)
             {
