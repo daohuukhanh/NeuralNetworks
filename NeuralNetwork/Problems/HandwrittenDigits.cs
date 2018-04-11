@@ -12,9 +12,9 @@ namespace NeuralNetwork.Problems
         {
             Console.WriteLine("Creating neural network...");
 
-            var network = new NeuralNetwork(784, 100, 10, 10, 0.3);
+            var network = new NeuralNetwork(756, 100, 10, 100, 5.0);
 
-            var dataset = File.ReadAllLines(@"C:/Users/daohu/Desktop/NeuralNetworks/mnist_train.csv");
+            var dataset = File.ReadAllLines("TrainingData.csv");
 
             var allInputs = dataset
                 .Select(x => x.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)).ToArray();
@@ -50,12 +50,12 @@ namespace NeuralNetwork.Problems
 
                     network.Train(input.Inputs, targets);
                 }
-
                 s.Stop();
+
                 Console.WriteLine($"Training complete in {s.ElapsedMilliseconds}ms{Environment.NewLine}");
                 Console.WriteLine("Querying network...");
 
-                var queryDataset = File.ReadAllLines(@"C:/Users/daohu/Desktop/NeuralNetworks/mnist_train.csv"); ;
+                var queryDataset = File.ReadAllLines("TrainingData.csv"); ;
 
                 var queryInputs = queryDataset
                     .Select(x => x.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)).ToArray();
