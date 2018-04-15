@@ -5,7 +5,7 @@ namespace NeuralNetwork
 {
     public class NeuralNetwork
     {
-        private readonly double _learningRate;        
+        private readonly double _learningRate;
         private Matrix _weightHiddenOutput;
         private Matrix _weightInputHidden;
         public int _numEpoch;

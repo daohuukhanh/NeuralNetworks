@@ -14,56 +14,41 @@ using System.Windows.Forms;
 
 namespace NeuralNetwork.Problems
 {
-
     public partial class Form1 : Form
     {
-        [DllImport("kernel32.dll")]
-        static extern IntPtr GetConsoleWindow();
-
-        [DllImport("user32.dll")]
-        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
-
-        const int SW_HIDE = 0;
-        const int SW_SHOW = 5;
-
-        IntPtr handle;
         Bitmap bitmap; //stores the bitmap
         int width, height; //dimensions of the bitmap
         int[,] yData; //stores luminance data
         int red = 0, blue = 0, green = 0; //stores rgb values
         List<String> images;
 
-        Boolean meow, woof;
+        Boolean meow, woof, none;
         Boolean initialized = false;
 
         public Form1()
         {
-            handle = GetConsoleWindow();
-
-            // Hide
-            ShowWindow(handle, SW_HIDE);
-
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Problems.HandwrittenDigits.success = true;
             FolderBrowserDialog b = new FolderBrowserDialog();
 
             if (b.ShowDialog() == DialogResult.OK)
             {
                 var folderName = b.SelectedPath;
+                Console.WriteLine("Generating data...");
                 GenerateData(folderName);
-            }            
+                Console.WriteLine("Data generated successfully.");
+                Console.WriteLine();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {           
-            // Show
-            ShowWindow(handle, SW_SHOW);
-
+        {
             Problems.HandwrittenDigits.Run();
-            Console.ReadLine();
+            Console.WriteLine("Training complete.");
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -86,8 +71,25 @@ namespace NeuralNetwork.Problems
                         {
                             bitmap = ConvertToBitmap(myStream);
                         }
-
                         pictureBox1.Image = new Bitmap(bitmap, 200, 300);
+                        Console.WriteLine("Image loaded successfully.");
+                        Console.WriteLine();
+
+                        Bitmap bm = ResizeImage(pictureBox1.Image, 28, 28);
+                        String[] yDataInfo = GetGreyScaleInfo(bm);
+
+                        var normalizedInput = Problems.HandwrittenDigits.NormalizeInput(yDataInfo.Skip(1).ToArray());
+                        var response = Problems.HandwrittenDigits.network.Query(normalizedInput);
+
+                        var max = response.Max(x => x);
+                        var f = response.ToList().IndexOf(max);
+
+                        if (f == 0)
+                            textBox1.Text = "It's a cat!";
+                        else if (f == 1)
+                            textBox1.Text = "It's a dog!";
+                        else if (f == 2)
+                            textBox1.Text = "It's neither a cat nor a dog!";
                     }
                 }
                 catch (Exception ex)
@@ -97,6 +99,7 @@ namespace NeuralNetwork.Problems
             }
         }
 
+        // Generate data based from a folder of images
         private void GenerateData(String folder)
         {
             images = GetImagesPath(folder);
@@ -111,18 +114,26 @@ namespace NeuralNetwork.Problems
                 {
                     meow = true;
                     woof = false;
+                    none = false;
                 }
                 else if (result[0] == 'd')
                 {
                     woof = true;
                     meow = false;
+                    none = false;
                 }
-
+                else
+                {
+                    none = true;
+                    woof = false;
+                    meow = false;
+                }
                 bitmap = ResizeImage(image, 28, 28);
                 WriteToCSV(bitmap);
             }
         }
-        //converts RGB color space to YCbCr color space
+
+        // Write sample data to CSV file
         private void WriteToCSV(Bitmap bitmap)
         {
             width = bitmap.Width;
@@ -154,7 +165,6 @@ namespace NeuralNetwork.Problems
                 }
             }
 
-            // Write sample data to CSV file
             using (CsvFileWriter writer = new CsvFileWriter("TrainingData.csv", initialized))
             {
                 if (!initialized)
@@ -180,6 +190,8 @@ namespace NeuralNetwork.Problems
                     row.Add("0");
                 else if (woof)
                     row.Add("1");
+                else if (none)
+                    row.Add("2");
 
                 for (int i = 0; i < width; i++)
                 {
@@ -189,13 +201,12 @@ namespace NeuralNetwork.Problems
                     }
                 }
                 writer.WriteRow(row);
-
             }
         }
 
+        // Store image paths
         public List<String> GetImagesPath(String folderName)
         {
-
             DirectoryInfo Folder;
             FileInfo[] Images;
 
@@ -211,7 +222,7 @@ namespace NeuralNetwork.Problems
             return imagesList;
         }
 
-        //converts image to bitmap
+        // Convert image to bitmap
         public Bitmap ConvertToBitmap(Stream bmpStream)
         {
             Bitmap bitmap;
@@ -245,6 +256,40 @@ namespace NeuralNetwork.Problems
             }
 
             return destImage;
+        }
+
+        // Store greyscale information of an image
+        private String[] GetGreyScaleInfo(Bitmap bitmap)
+        {
+            width = bitmap.Width;
+            height = bitmap.Height;
+            yData = new int[width, height]; //luma
+            String[] yDataInfo = new String[756];
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    Color pixelColor = bitmap.GetPixel(x, y);
+
+                    red = pixelColor.R;
+                    blue = pixelColor.B;
+                    green = pixelColor.G;
+
+                    yData[x, y] = (int)((0.299 * red) + (0.587 * green) + (0.114 * blue));
+                }
+            }
+
+            int index = 0;
+
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 1; j < height; j++)
+                {
+                    yDataInfo[index++] = yData[i, j].ToString();
+                }
+            }
+            return yDataInfo;
         }
     }
 }
