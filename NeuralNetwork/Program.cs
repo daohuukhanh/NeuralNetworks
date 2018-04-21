@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace NeuralNetwork
 {
     class Program
-    {
+    {        
+        [STAThread]
         static void Main(string[] args)
-        {
-            Problems.HandwrittenDigits.Run();
+        {           
+            Application.Run(new Problems.Form1());
 
-            Console.ReadLine();
+            //Problems.HandwrittenDigits.Run();            
+            //Console.ReadLine();
         }
     }
 }
